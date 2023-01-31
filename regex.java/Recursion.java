@@ -1,4 +1,4 @@
-public class Recursion {
+public class exam1 {
 
     public static void main(String[] args) {
 
@@ -6,7 +6,8 @@ public class Recursion {
 
         // Instructions (Important!)
 
-        // Without using arrays or loops or regular expressions, apply recursion to remove specific letters in
+        // Without using arrays or loops or regular expressions, apply recursion to
+        // remove specific letters in
         // your full name.
 
         // 1. If the last letter of your surname is a vowel, remove all vowels in
@@ -27,30 +28,36 @@ public class Recursion {
         // Example:
         // String fullName = "elizer ponio jr";
 
-        String fullName = "Miguel Angelo Enrico";
+        String fullName = "Miguel Angelo D Enrico";
 
-
-        removeLetter(fullName, 0);
+        removeLetter(fullName);
     }
 
     static void removeLetter(String str) {
-        // Add code here
+
+        extractConsonant(str, "");
+
     }
 
-    static void removeLetter(String str, int index) {
-        //add the code here
-
-        if (index == str.length()) {
-            return;
+    public static String extractConsonant(String s, String previous) {
+        if (s.length() == 0) {
+            return s;
         }
-        if (str.charAt(index) == 'a' || str.charAt(index) == 'e' || str.charAt(index) == 'i' || str.charAt(index) == 'o' || str.charAt(index) == 'u') {
-            str = str.substring(0, index) + str.substring(index + 1);
-            removeLetter(str, index);
-        } else {
-            removeLetter(str, index + 1);
+        char c = s.charAt(0);
+
+        switch (c) {
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u':
+            case ' ':
+                return c + extractConsonant(s.substring(1), previous+c);
+            default:
+                System.out.println(previous + s.substring(1));
+                return extractConsonant(s.substring(1), previous);
+
+
         }
-
-        System.out.println(str);
     }
-    }
-
+}
